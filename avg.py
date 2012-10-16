@@ -1,9 +1,12 @@
 from PIL import Image
+from cStringIO import StringIO
 
 # ty: http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html
 # ty: http://sprunge.us/WcVJ?py
 
 def average_hash(im):
+    if isinstance(im, str):
+        im = StringIO(im)
     if not isinstance(im, Image.Image):
         im = Image.open(im)
     im = im.resize((8,8),Image.ANTIALIAS).convert('L')
@@ -14,6 +17,10 @@ def average_hash(im):
 
 
 def hamming(h1,h2):
+    if isinstance(h1, str):
+        h1 = int(h1)
+    if isinstance(h2, str):
+        h2 = int(h2)
     h,d = 0, h1 ^ h2
     while d:
         h += 1
