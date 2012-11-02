@@ -17,9 +17,9 @@ def average_hash(im):
 
 
 def hamming(h1,h2):
-    if isinstance(h1, str):
+    if isinstance(h1, (unicode, str)):
         h1 = int(h1)
-    if isinstance(h2, str):
+    if isinstance(h2, (unicode, str)):
         h2 = int(h2)
     h,d = 0, h1 ^ h2
     while d:
